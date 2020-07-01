@@ -51,7 +51,7 @@ export default class SingleFile extends Component {
                 <div className='single-file-wrapper'>
                     <h3>{this.state.file.name}</h3>
                     <button onClick={this.handleDownload}>Download</button>
-                    <button onClick={this.handleDelete}>Delete</button>
+                    <button className="delete-button" onClick={this.handleDelete}>Delete</button>
                 </div>
             )
         }
