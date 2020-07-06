@@ -46,7 +46,7 @@ export default class SingleFile extends Component {
       }
 
     render() {
-        if (this.state.file) {
+        if (this.state.file.name) {
             return (
                 <div className='single-file-wrapper'>
                     <h3>{this.state.file.name}</h3>
