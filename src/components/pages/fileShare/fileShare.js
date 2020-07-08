@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import Cookies from "js-cookie";
 
 import SingleFile from "./singleFile";
 
 export default class FileShare extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    if (!Cookies.get("username")) {
+      props.history.push("/")
+    }
 
     this.state = {
       file: {},
@@ -15,6 +20,7 @@ export default class FileShare extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleGetData = this.handleGetData.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleChange(event) {
@@ -66,9 +72,15 @@ export default class FileShare extends Component {
     this.setState({ data: newData })
   }
 
+  handleLogout() {
+    Cookies.remove("username")
+    this.props.history.push("/")
+  }
+
   render() {
     return (
       <div className='file-share-wrapper'>
+        <button onClick={this.handleLogout}>Log Out</button>
         <input onChange={this.handleChange} type="file"/>
         <button onClick={this.handleSubmit}>Send</button>
         <hr/>

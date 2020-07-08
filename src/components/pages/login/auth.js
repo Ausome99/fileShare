@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Cookies from "js-cookie";
 
 import Login from "./login";
 import Signup from "./signup";
@@ -6,6 +7,10 @@ import Signup from "./signup";
 export default class Auth extends Component {
     constructor(props) {
         super(props);
+
+        if (Cookies.get("username")) {
+            props.history.push("/files")
+        }
 
         this.state = {
             authMethod: "login",
@@ -88,6 +93,8 @@ export default class Auth extends Component {
                 }
                 else {
                     this.setState({ errorMessage: "none" })
+                    Cookies.set("username", this.state.usernameInput)
+                    this.props.history.push("/files")
                 }
             })
             .catch(error => {
@@ -100,7 +107,10 @@ export default class Auth extends Component {
     handleClick() {
         this.setState({ 
             authMethod: this.state.authMethod === "login" ? "signup" : "login",
-            errorMessage: "none"
+            errorMessage: "none",
+            usernameInput: "",
+            passwordInput: "",
+            passwordConfirmInput: ""
          })
     }
 
