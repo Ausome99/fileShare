@@ -32,6 +32,7 @@ export default class FileShare extends Component {
     form.append("name", this.state.file.name)
     form.append("type", this.state.file.type)
     form.append("data", this.state.file)
+    form.append("username", Cookies.get("username"))
 
     fetch("http://127.0.0.1:5000/file/add", { 
       method: "POST",
@@ -43,7 +44,7 @@ export default class FileShare extends Component {
   }
 
   handleGetData() {
-    fetch("http://127.0.0.1:5000/file/get/data", { method: "GET" })
+    fetch(`http://127.0.0.1:5000/file/get/data/${Cookies.get("username")}`, { method: "GET" })
     .then(response=> response.json())
     .then(data => this.setState({ data: data }))
     .catch(error => console.log(error))

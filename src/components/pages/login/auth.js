@@ -60,6 +60,8 @@ export default class Auth extends Component {
                 }
                 else {
                     this.setState({ errorMessage: "none" })
+                    Cookies.set("username", this.state.usernameInput)
+                    this.props.history.push("/files")
                 }
             })
             .catch(error => {
