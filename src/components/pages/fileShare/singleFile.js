@@ -13,7 +13,7 @@ export default class SingleFile extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://127.0.0.1:5000/file/get/${this.props.id}`, { method: "GET" })
+        fetch(`https://file-share-api-alm.herokuapp.com/file/get/${this.props.id}`, { method: "GET" })
         .then(response => response.blob())
         .then(data => {
         const file = new File([data], this.props.name, { type: this.props.type })
@@ -34,7 +34,7 @@ export default class SingleFile extends Component {
       }
 
       handleDelete() {
-          fetch(`http://127.0.0.1:5000/file/delete/${this.props.id}`, { method: "DELETE" })
+          fetch(`https://file-share-api-alm.herokuapp.com/file/delete/${this.props.id}`, { method: "DELETE" })
           .then(response => response.json())
           .then(data => {
               console.log(data)

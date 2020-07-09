@@ -43,7 +43,7 @@ export default class Auth extends Component {
             this.setState({ errorMessage: "mismatched passwords"})
         }
         else {
-            fetch("http://127.0.0.1:5000/user/create", {
+            fetch("https://file-share-api-alm.herokuapp.com/user/create", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify({
@@ -78,7 +78,7 @@ export default class Auth extends Component {
             this.setState({ errorMessage: "blank field" })
         }
         else {
-            fetch("http://127.0.0.1:5000/user/verification", {
+            fetch("https://file-share-api-alm.herokuapp.com/user/verification", {
                 method: "POST",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify({
